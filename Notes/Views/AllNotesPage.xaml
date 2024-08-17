@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Notes.Views.AllNotesPage"
+             Title="Your Notes">
+    <!-- Add an item to the toolbar -->
+    
+
+
+    <!-- Display notes in a list -->
+    <VerticalStackLayout Padding="20">
+        <Entry Placeholder="Título de la nota" Text="{Binding CurrentNote}" />
+        <Editor Placeholder="Descripción" Text="{Binding CurrentDescription}" HeightRequest="100" />
+
+        <Button Text="Agregar Nota" Command="{Binding addNoteCommand}" BackgroundColor="Green" Margin="0,10,0,10" />
+
+        <Label HorizontalOptions="Center" Margin="0,20" Text="Lista de Notas:" FontSize="18" FontAttributes="Bold" />
+
+        <CollectionView ItemsSource="{Binding Notes}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <FlexLayout Margin="10,10,0,10"
+                                    Direction="Row"
+                                    AlignContent="Center"
+                                    JustifyContent="Start"
+                                    HeightRequest="30">
+                            <Label Text="Titulo:" FontSize="18"/>
+                            <Label Text="{Binding CurrentNote}" FontAttributes="Bold" Margin="2" />
+                        </FlexLayout>
+                        <FlexLayout Margin="10,0,0,10"
+                                    Direction="Row"
+                                    AlignContent="Center"
+                                    JustifyContent="Start"
+                                    HeightRequest="30">
+                            <Label FontSize="18" Text="Descripción:"></Label>
+                            <Label Text="{Binding Description}" FontAttributes="Bold" Margin="2"/>
+                        </FlexLayout>
+                        <FlexLayout Margin="10,0,0,15"
+                                    Direction="Row"
+                                    AlignContent="Center"
+                                    JustifyContent="Start"
+                                    HeightRequest="30">
+                            <Label FontSize="18" Text="Fecha:"></Label>
+                            <Label Text="{Binding Date, StringFormat='{0:d}'}" FontSize="Small" Margin="2" />
+                        </FlexLayout>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>
